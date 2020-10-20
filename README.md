@@ -20,13 +20,11 @@ Creates a work-stealing thread pool using all available processors as its target
 Use cases:1-For divide and conquer type of problems.  2-Effective use of idle threads. Idle threads steals tasks from busy threads.
 Cons: 1-Unbounded queue size is harmful
 
-
 In Java 8, a new type of thread pool is introduced as newWorkStealingPool() to complement the existing ones. Java gave a very succinct definition of this pool as:
 “Creates a work-stealing thread pool using all available processors as its target parallelism level.”
 Let’s explore this pool in more detail and see what it brings to our development toolbox.
 As its name says, it’s based on a work-stealing algorithm, where a task can spawn other, smaller tasks, which are added to queues of parallel processing threads. If one thread has finished its work and has nothing more to do, it can “steal” the work from the other thread’s queue.
 But this work-stealing mechanism is already used by ForkJoinPool in Java and is highly useful when your task(s) spawn smaller tasks, which can be proactively picked up by any available thread, reducing the thread idle time.
-
 
 ### Future vs CompletableFuture:
 - CompletableFuture is an extension to Java’s Future API which was introduced in Java 5.
@@ -69,8 +67,7 @@ All the methods in the CompletableFuture API has two variants - One which accept
 
 ### Combining multiple CompletableFutures together:
 1. CompletableFuture.allOf()
-2. CompletableFuture.anyOf()
-
+2. CompletableFuture.anyOf()    
 The join() method is similar to get(). The only difference is that it throws an unchecked exception if the underlying CompletableFuture completes exceptionally.
 
 ### CompletableFuture Exception Handling:
@@ -90,8 +87,6 @@ To customize all this, implement AsyncConfigurer and provide:
 1. your own Executor through the getAsyncExecutor() method, and
 2. your own AsyncUncaughtExceptionHandler through the getAsyncUncaughtExceptionHandler() method.
 
-
-
 further references:     
 - https://www.baeldung.com/spring-async   
 - https://howtodoinjava.com/spring-boot2/rest/enableasync-async-controller/   
@@ -104,6 +99,9 @@ further references:
 - https://www.geeksforgeeks.org/countdownlatch-in-java/   
 - https://docs.spring.io/spring/docs/4.2.x/spring-framework-reference/html/scheduling.html    
 - https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/scheduling/annotation/EnableAsync.html
+
+### Project descriptions :
+please see application.properties files in resources folder and select a active profile "dev" or "com" to run project. you can check test methods too.  
 
 <hr/>
 <a href="mailto:eng.motahari@gmail.com?"><img src="https://img.shields.io/badge/gmail-%23DD0031.svg?&style=for-the-badge&logo=gmail&logoColor=white"/></a>
